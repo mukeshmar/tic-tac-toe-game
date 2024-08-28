@@ -1,10 +1,7 @@
 package live.mukeshtechlab;
 
 import live.mukeshtechlab.controllers.GameController;
-import live.mukeshtechlab.models.GameState;
-import live.mukeshtechlab.models.Player;
-import live.mukeshtechlab.models.PlayerType;
-import live.mukeshtechlab.models.Symbol;
+import live.mukeshtechlab.models.*;
 import live.mukeshtechlab.services.strategies.winningStrategy.ColumnWinningStrategy;
 import live.mukeshtechlab.services.strategies.winningStrategy.DiagonalWinningStrategy;
 import live.mukeshtechlab.services.strategies.winningStrategy.RowWinningStrategy;
@@ -20,7 +17,8 @@ public class Client {
 
         List<Player> players = new ArrayList<>();
         players.add(new Player("Mukesh", new Symbol('M'), PlayerType.HUMAN));
-        players.add(new Player("Saumya", new Symbol('S'), PlayerType.HUMAN));
+//        players.add(new Player("Saumya", new Symbol('S'), PlayerType.HUMAN));
+        players.add(new Bot("Saumya", new Symbol('S'), BotDifficultyLevel.EASY));
 
         List<WinningStrategy> winningStrategies = new ArrayList<>();
         winningStrategies.add(new ColumnWinningStrategy());
