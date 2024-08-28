@@ -39,6 +39,23 @@ public class GameService {
         int totalPlayers = game.getPlayers().size();
         nextPlayerIndex = (nextPlayerIndex + 1) % totalPlayers;
         game.setNextPlayerIndex(nextPlayerIndex); // Set the updated next player index
+
+        // check winner or draw
+        if (checkWinner(game.getBoard(), finalMove)) {
+            game.setWinner(currentPlayer);
+            game.setGameState(GameState.ENDED);
+        } else if (game.getMoves().size() == game.getBoard().getDimension() * game.getBoard().getDimension()) {
+            game.setGameState(GameState.DRAW);
+        }
+    }
+
+    private boolean checkWinner(Board board, Move move) {
+        for (WinningStrategy strategy : game.getWinningStrategies()) {
+            if (strategy.isWinning(board, move)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public GameState getGameState() {
